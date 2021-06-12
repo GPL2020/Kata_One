@@ -1,74 +1,52 @@
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
 
-int menu();
 double sumar(double x, double y);
 double restar(double x, double y);
 double multiplicar(double x, double y);
 double dividir(double x, double y, bool &ok);
 
-int main() {
+int main(int argc, char *argv[]) {
 
     int opcion;
-    double resultado;
-    bool ok;
+    bool ok = true;
+    double resultado = 0;
 
-    do {
-        opcion = menu();
-
-        double numero1, numero2;
-
-        if (opcion != 5) { 
-            cout << "Ingrese el numero 1: ";
-            cin >> numero1;
-
-            cout << "Ingrese el numero 2: ";
-            cin >> numero2;
-
-            switch (opcion) {
-                case 1: 
-                    resultado = sumar(numero1, numero2);
-                    cout << "Resultado de la suma = " << resultado << endl;
-                    break;
-                case 2:
-                    resultado = restar(numero1, numero2);
-                    cout << "Resultado de la resta = " << resultado << endl;
-                    break;
-                case 3:
-                    resultado = multiplicar(numero1, numero2);
-                    cout << "Resultado de la multiplicacion = " << resultado << endl;
-                    break;
-                case 4:
-                    resultado = dividir(numero1, numero2, ok);
-                    if (ok)
-                        cout << "Resultado de la división = " << resultado << endl;
-                    else 
-                        cout << "No se puede dividir por 0" << endl;
-                    break;
-            }
+    if (argc >= 3) { // Al menos se tienen que pasar tres argumentos
+        // La pos 0 es el nombre del archivo ejecutable
+        double n1 = atof(argv[1]);  // argumento 1 - Primer operando
+        char operador = *argv[2];   // argumento 2 - Operador
+        double n2 = atof(argv[3]);  // argumento 3 - Segundo operando
+        
+        switch (operador) {
+            case '+':
+                resultado = sumar(n1, n2);
+                break;
+            case '-':
+                resultado = restar(n1, n2);
+                break;
+            case 'x':
+                resultado = multiplicar(n1, n2);
+                break;
+            case '/':
+                resultado = dividir(n1, n2, ok);
+                break;
         }
-    } while (opcion != 5);
 
+        if (ok) 
+            cout << "= " << resultado << endl;
 
-    cout << "Ingrese ENTER para finalizar... ";
-    cin.ignore();
-    cin.get();
-
+    }
+    else {
+        cout << "- Argumentos - " << endl
+             << "1 -> Operando 1" << endl
+             << "2 -> Operador (+ - x /)" << endl
+             << "3 -> Operando 2" << endl;
+    }
+    
     return 0;
-}
-
-int menu() {
-    int op;
-
-    cout << "1) Sumar" << endl
-         << "2) Restar" << endl
-         << "3) Multiplicar" << endl
-         << "4) Dividir" << endl
-         << "5) Salir" << endl;
-     cin >> op;
-
-    return op;
 }
 
 double sumar(double x, double y) {
@@ -84,7 +62,7 @@ double multiplicar(double x, double y) {
 }
 
 double dividir(double x, double y, bool &ok) {
-    double result;
+    double result = 0;
 
     if (y != 0) {
         result = x / y;
@@ -92,5 +70,6 @@ double dividir(double x, double y, bool &ok) {
     }
     else 
         ok = false;
+        
     return result;
 }
