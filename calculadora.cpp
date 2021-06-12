@@ -41,9 +41,9 @@ int main(int argc, char *argv[]) {
     }
     else {
         cout << "- Argumentos - " << endl
-             << "1 -> Operando 1" << endl
+             << "1 -> Operando 1 <-" << endl
              << "2 -> Operador (+ - x /)" << endl
-             << "3 -> Operando 2" << endl;
+             << "3 -> Operando 2 <-" << endl;
     }
     
     return 0;
