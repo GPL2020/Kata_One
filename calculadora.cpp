@@ -8,45 +8,12 @@ double restar(double x, double y);
 double multiplicar(double x, double y);
 double dividir(double x, double y);
 
-int main() {
+int main(int argc, char *argv[]) {
 
     int opcion;
     double resultado;
 
-    do {
-        opcion = menu();
-
-        double numero1, numero2;
-
-        cout << "Ingrese el numero 1: ";
-        cin >> numero1;
-
-        cout << "Ingrese el numero 2: ";
-        cin >> numero2;
-
-        switch (opcion) {
-            case 1: 
-                resultado = sumar(numero1, numero2);
-                cout << "Resultado de la suma = " << resultado << endl;
-                break;
-            case 2:
-                resultado = restar(numero1, numero2);
-                cout << "Resultado de la resta = " << resultado << endl;
-                break;
-            case 3:
-                resultado = multiplicar(numero1, numero2);
-                cout << "Resultado de la multiplicacion = " << resultado << endl;
-                break;
-            case 4:
-                resultado = dividir(numero1, numero2);
-                if (resultado != 0)
-                    cout << "Resultado de la división = " << resultado << endl;
-                else 
-                    cout << "No se puede dividir por 0" << endl;
-                break;
-        }
-
-    } while (opcion != 5);
+    
     
     cout << "Ingrese ENTER para finalizar... ";
     cin.ignore();
